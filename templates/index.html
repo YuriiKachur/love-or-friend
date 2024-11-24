@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        input, select { padding: 8px; margin: 5px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+        .result { font-size: 18px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Калькулятор</h1>
+    
+    <!-- Поля введення для чисел -->
+    <input type="number" id="a" placeholder="Введіть перше число (a)">
+    <input type="number" id="b" placeholder="Введіть друге число (b)">
+    
+    <!-- Вибір операції -->
+    <select id="operation">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="**">** (піднесення до степеня)</option>
+        <option value="//">Цілочисельне ділення (//)</option>
+        <option value="%">Залишок (%)</option>
+    </select>
+    
+    <!-- Кнопка для обчислення -->
+    <button onclick="calculate()">Обчислити</button>
+    
+    <!-- Поле для результату -->
+    <div class="result" id="result">Результат: </div>
+
+    <script>
+        function calculate() {
+            // Зчитування значень із введення користувача
+            const a = parseFloat(document.getElementById("a").value);
+            const b = parseFloat(document.getElementById("b").value);
+            const operation = document.getElementById("operation").value;
+            let result;
+
+            // Перевірка на валідність введених значень
+            if (isNaN(a) || isNaN(b)) {
+                document.getElementById("result").innerText = "Будь ласка, введіть коректні числа.";
+                return;
+            }
+
+            // Обчислення результату залежно від обраної операції
+            switch(operation) {
+                case '+':
+                    result = a + b;
+                    break;
+                case '-':
+                    result = a - b;
+                    break;
+                case '*':
+                    result = a * b;
+                    break;
+                case '/':
+                    result = b !== 0 ? a / b : "Ділення на нуль неможливе.";
+                    break;
+                case '**':
+                    result = a ** b;
+                    break;
+                case '//':
+                    result = b !== 0 ? Math.floor(a / b) : "Ділення на нуль неможливе.";
+                    break;
+                case '%':
+                    result = b !== 0 ? a % b : "Ділення на нуль неможливе.";
+                    break;
+                default:
+                    result = "Невідома операція.";
+            }
+
+            // Виведення результату
+            document.getElementById("result").innerText = `Результат: ${result}`;
+        }
+    </script>
+    
+</body>
+</html>
