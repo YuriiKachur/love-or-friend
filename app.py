@@ -1,10 +1,25 @@
-from flask import Flask, render_template
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
-@app.route("/")
-def index():
-    return render_template("index.html")  # Рендеринг HTML-файлу з інтерфейсом
+# Головна сторінка з формою
+@app.route('/')
+def home():
+    return render_template('index.html')
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+# Обробка форми
+@app.route('/result', methods=['POST'])
+def result():
+    name1 = request.form['name1'].lower()
+    name2 = request.form['name2'].lower()
+
+    # Умова для перевірки
+    if set(name1) & set(name2):  # Якщо є спільні букви
+        result = "LOVE"
+    else:
+        result = "Friends"
+
+    return f"<h1>Result: {result}</h1><br><a href='/'>Go back</a>"
+
+if __name__ == '__main__':
+    app.run(debug=True)
