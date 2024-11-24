@@ -1,86 +1,20 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Калькулятор</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-        input, select { padding: 8px; margin: 5px; }
-        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
-        .result { font-size: 18px; margin-top: 20px; }
-    </style>
+    <title>Love or Friends</title>
 </head>
 <body>
-
-    <h1>Калькулятор</h1>
-    
-    <!-- Поля введення для чисел -->
-    <input type="number" id="a" placeholder="Введіть перше число (a)">
-    <input type="number" id="b" placeholder="Введіть друге число (b)">
-    
-    <!-- Вибір операції -->
-    <select id="operation">
-        <option value="+">+</option>
-        <option value="-">-</option>
-        <option value="*">*</option>
-        <option value="/">/</option>
-        <option value="**">** (піднесення до степеня)</option>
-        <option value="//">Цілочисельне ділення (//)</option>
-        <option value="%">Залишок (%)</option>
-    </select>
-    
-    <!-- Кнопка для обчислення -->
-    <button onclick="calculate()">Обчислити</button>
-    
-    <!-- Поле для результату -->
-    <div class="result" id="result">Результат: </div>
-
-    <script>
-        function calculate() {
-            // Зчитування значень із введення користувача
-            const a = parseFloat(document.getElementById("a").value);
-            const b = parseFloat(document.getElementById("b").value);
-            const operation = document.getElementById("operation").value;
-            let result;
-
-            // Перевірка на валідність введених значень
-            if (isNaN(a) || isNaN(b)) {
-                document.getElementById("result").innerText = "Будь ласка, введіть коректні числа.";
-                return;
-            }
-
-            // Обчислення результату залежно від обраної операції
-            switch(operation) {
-                case '+':
-                    result = a + b;
-                    break;
-                case '-':
-                    result = a - b;
-                    break;
-                case '*':
-                    result = a * b;
-                    break;
-                case '/':
-                    result = b !== 0 ? a / b : "Ділення на нуль неможливе.";
-                    break;
-                case '**':
-                    result = a ** b;
-                    break;
-                case '//':
-                    result = b !== 0 ? Math.floor(a / b) : "Ділення на нуль неможливе.";
-                    break;
-                case '%':
-                    result = b !== 0 ? a % b : "Ділення на нуль неможливе.";
-                    break;
-                default:
-                    result = "Невідома операція.";
-            }
-
-            // Виведення результату
-            document.getElementById("result").innerText = `Результат: ${result}`;
-        }
-    </script>
-    
+    <h1>Love or Friends</h1>
+    <form action="/result" method="POST">
+        <label for="name1">Enter First Name:</label>
+        <input type="text" id="name1" name="name1" required>
+        <br><br>
+        <label for="name2">Enter Second Name:</label>
+        <input type="text" id="name2" name="name2" required>
+        <br><br>
+        <button type="submit">Generate</button>
+    </form>
 </body>
 </html>
