@@ -14,7 +14,7 @@ def result():
     name2 = request.form['name2'].lower()
 
     # Умова для перевірки
-    if set(Yurchuk) & set(Oksasnka):  # Якщо є спільні букви
+    if set(Yurchuk) & set(Oksanka):  # Якщо є спільні букви
         result = "LOVE"
     else:
         result = "Friends"
